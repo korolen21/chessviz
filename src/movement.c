@@ -22,4 +22,40 @@ char** EnterCoordinate(char** chess, char color)
     return chess;
 }
 
+int Check(char** chess, char oper, char color, int x1, int y1, int x2, int y2)
+{
+    if ((oper != '-') && (oper != 'x')) {
+        return -1;
+    }
+    if (((x1 < 0) || (x1 > 7)) || ((y1 < 0) || (y1 > 7))
+        || ((x2 < 0) || (x2 > 7)) || ((y2 < 0) || (y2 > 7))) {
+        return -1;
+    }
+    if ((oper == '-') && (chess[x2][y2] != ' ')) {
+        return -1;
+    }
+    if (color == 'w') {
+        if (chess[x1][y1] > 'Z') {
+            return -1;
+        }
+        if ((oper == 'x') && ((chess[x2][y2] < 'a') || chess[x2][y2] == ' ')) {
+            return -1;
+        }
+    } else {
+        if (chess[x1][y1] < 'a') {
+            return -1;
+        }
+        if ((oper == 'x') && ((chess[x2][y2] > 'Z') || chess[x2][y2] == ' ')) {
+            return -1;
+        }
+    }
+    if ((chess[x1][y1] == 'P') || (chess[x1][y1] == 'p')) {
+        if (StepPawn(chess, oper, color, x1, y1, x2, y2) == -1) {
+            return -1;
+        }
+    } else {
+        return -1;
+    }
+    return 0;
+}
 
