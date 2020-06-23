@@ -87,3 +87,41 @@ int StepPawn(
                 }
             }
             return 0;
+             } else {
+            if ((x1 - x2) != 1) {
+                return -1;
+            }
+            if (((y1 - y2) != 1) && ((y2 - y1) != 1)) {
+                return -1;
+            }
+        }
+        return 0;
+    } else {
+        if (oper == '-') {
+            if ((y1 - y2) != 0) {
+                return -1;
+            }
+            if (x2 - x1 != 1) {
+                if (x1 != 1) {
+                    return -1;
+                }
+                if (x2 != 3) {
+                    return -1;
+                }
+                if (chess[2][y1] != ' ') {
+                    return -1;
+                }
+            }
+            return 0;
+        } else {
+            if ((x2 - x1 != 1)) {
+                return -1;
+            }
+            if (((y1 - y2) != 1) && ((y2 - y1) != 1)) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+    return -1;
+} 
