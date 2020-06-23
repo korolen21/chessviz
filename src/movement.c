@@ -58,4 +58,12 @@ int Check(char** chess, char oper, char color, int x1, int y1, int x2, int y2)
     }
     return 0;
 }
-
+int Translate(char temp)
+{
+    for (int i = 0; i < 8; i++) {
+        if (temp == 'a' + i) {
+            return i;
+        }
+    }
+    return -1;
+}
