@@ -67,3 +67,23 @@ int Translate(char temp)
     }
     return -1;
 }
+int StepPawn(
+        char** chess, char oper, char color, int x1, int y1, int x2, int y2)
+{
+    if (color == 'w') {
+        if (oper == '-') {
+            if ((y1 - y2) != 0) {
+                return -1;
+            }
+            if (x1 - x2 != 1) {
+                if (x1 != 6) {
+                    return -1;
+                }
+                if (x2 != 4) {
+                    return -1;
+                }
+                if (chess[5][y1] != ' ') {
+                    return -1;
+                }
+            }
+            return 0;
